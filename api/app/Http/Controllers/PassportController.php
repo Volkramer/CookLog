@@ -43,25 +43,35 @@ class PassportController extends Controller
             ],
         ]);
 
-        return json_decode((string) $response->getBody(), true);
+        return $response;
     }
 
     public function login(Request $request)
     {
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
-        if (auth()->attempt($credentials)) {
-            $token = auth()->user()->createToken('CookLog')->accessToken;
-            return response()->json(['token' => $token], 200);
-        } else {
-            return response()->json(['error' => 'UnAuthorised'], 401);
-        }
+        $this->validate($request, [
+            'username' => 'required|min:3',
+            'password'=> 'required|min:6',
+        ]);
+
+        $http = new HttpClient();
+
+        $response = $http->post(env('APP_URL') . '/oauth/token', [
+            'form_params' => [
+                'grant_type' => 'password',
+                'client_id' => $this->client->id,
+                'client_secret' => $this->client->secret,
+                'username' => $request->username,
+                'password' => $request->password,
+                'scope' => '*',
+            ],
+        ]);
+
+        return $response;
+
     }
 
     public function details()
     {
-        return response()->json(['user' => auth()->user()], 200);
+
     }
 }
