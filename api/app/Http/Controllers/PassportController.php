@@ -4,21 +4,25 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Laravel\Passport\Client;
+use GuzzleHttp\Client as HttpClient;
+use Illuminate\Support\Facades\Auth;
 
 class PassportController extends Controller
 {
-    /**
-     * Handles Registration Request
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
+    private $client;
+
+    public function __construct()
+    {
+        $this->client = Client::find(1);
+    }
+
     public function register(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         $user = User::create([
@@ -26,36 +30,53 @@ class PassportController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
-        $token = $user->createToken('CookLog')->accessToken;
 
-        return response()->json(['token' => $token], 200);
+        $http = new HttpClient();
+
+        $response = $http->post(env('APP_URL') . '/oauth/token', [
+            'form_params' => [
+                'grant_type' => 'password',
+                'client_id' => $this->client->id,
+                'client_secret' => $this->client->secret,
+                'username' => $user->email,
+                'password' => $request->password,
+                'scope' => '*',
+            ],
+        ]);
+
+        return $response;
     }
 
-    /**
-     * Handles Login Request
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function login(Request $request)
     {
-        $credentials = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
-        if (auth()->attempt($credentials)) {
-            $token = auth()->user()->createToken('CookLog')->accessToken;
-            return response()->json(['token' => $token], 200);
-        } else {
-            return response()->json(['error' => 'UnAuthorised'], 401);
-        }
+        $this->validate($request, [
+            'username' => 'required|min:3',
+            'password'=> 'required|min:6',
+        ]);
+
+        $http = new HttpClient();
+
+        $response = $http->post(env('APP_URL') . '/oauth/token', [
+            'form_params' => [
+                'grant_type' => 'password',
+                'client_id' => $this->client->id,
+                'client_secret' => $this->client->secret,
+                'username' => $request->username,
+                'password' => $request->password,
+                'scope' => '*',
+            ],
+        ]);
+
+        return $response;
+
     }
 
-    /**
-     * Return Authenticated User Details
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+    public function logout(Request $request){
+        $accessToken = Auth::user()->token();
+
+        $accessToken->revoke();
+    }
+
     public function details()
     {
         return response()->json(['user' => auth()->user()], 200);
