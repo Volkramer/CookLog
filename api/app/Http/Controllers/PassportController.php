@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Laravel\Passport\Client;
 use GuzzleHttp\Client as HttpClient;
+use Illuminate\Support\Facades\Auth;
 
 class PassportController extends Controller
 {
@@ -70,8 +71,14 @@ class PassportController extends Controller
 
     }
 
+    public function logout(Request $request){
+        $accessToken = Auth::user()->token();
+
+        $accessToken->revoke();
+    }
+
     public function details()
     {
-
+        return response()->json(['user' => auth()->user()], 200);
     }
 }
