@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 /**
  * Unprotected Route
  */
-Route::post('login', 'PassportController@login');
+Route::post('login', 'PassportController@login')->name('login');
 Route::post('register', 'PassportController@register');
 
 /**
