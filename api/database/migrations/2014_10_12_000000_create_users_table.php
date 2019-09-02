@@ -23,8 +23,10 @@ class CreateUsersTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('user_description')->nullable();
-            $table->boolean('toggle_private');
+            $table->boolean('toggle_private')->default(0);
             $table->timestamps();
+
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 
