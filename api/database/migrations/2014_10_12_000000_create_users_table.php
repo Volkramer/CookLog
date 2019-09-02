@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('skill_level_id')->references('id')->on('skill_levels');
         });
     }
 
