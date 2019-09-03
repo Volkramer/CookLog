@@ -15,8 +15,12 @@ class CreateSkillLevelsTable extends Migration
     {
         Schema::create('skill_levels', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('skill_level');
+            $table->string('level');
             $table->timestamps();
+        });
+
+        Schema::table('users', function (Blueprint $table){
+            $table->foreign('skill_level_id')->references('id')->on('skill_levels');
         });
     }
 
