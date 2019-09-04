@@ -46,4 +46,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\SkillLevel');
     }
 
+    public function shoppingList(){
+        return $this->hasMany('App\ShoppingList');
+    }
+
 }
