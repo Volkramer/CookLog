@@ -15,11 +15,11 @@ class CreateShoppingListsTable extends Migration
     {
         Schema::create('shopping_lists', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->default();
+            $table->string('name')->default('Shopping List');
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
