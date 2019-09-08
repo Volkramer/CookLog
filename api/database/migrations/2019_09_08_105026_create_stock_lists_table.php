@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShoppingListContentsTable extends Migration
+class CreateStockListsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateShoppingListContentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shopping_list_contents', function (Blueprint $table) {
+        Schema::create('stock_lists', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('quantity');
-            $table->boolean('check')->default(0);
-            $table->bigInteger('shopping_list_id')->unsigned();
+            $table->string('name');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateShoppingListContentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shopping_list_contents');
+        Schema::dropIfExists('stock_lists');
     }
 }
