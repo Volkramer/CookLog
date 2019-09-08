@@ -11,6 +11,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        DB::table('roles')->insert([
+            'role'=>'normal'
+        ]);
+        DB::table('roles')->insert([
+            'role'=>'moderator'
+        ]);
+        DB::table('roles')->insert([
+            'role'=>'administrator'
+        ]);
+        DB::table('skill_levels')->insert([
+            'level'=>'beginner'
+        ]);
+        DB::table('skill_levels')->insert([
+            'level'=>'intermediate'
+        ]);
+        DB::table('skill_levels')->insert([
+            'level'=>'advanced'
+        ]);
+        DB::table('skill_levels')->insert([
+            'level'=>'pro'
+        ]);
     }
 }
