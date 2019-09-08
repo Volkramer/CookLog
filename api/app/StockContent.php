@@ -4,15 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ShoppingListContent extends Model
+class StockContent extends Model
 {
     public function products()
     {
         return $this->belongsToMany('App\Product');
     }
 
-    public function shoppingList()
+    public function stockList()
     {
-        return $this->belongsTo('App\ShoppingList');
+        return $this->belongsTo('App\StockList');
     }
 }
