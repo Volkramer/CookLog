@@ -19,7 +19,7 @@ class CreateStockContentsTable extends Migration
             $table->dateTime('dlc_dluo_date')->nullable();
             $table->boolean('dlc_dluo_toggle')->default(0);
             $table->bigInteger('stock_list_id')->unsigned();
-            $table->foreign('stock_list_id')->references('id')->on('stock-lists')->onDelete('cascade');
+            $table->foreign('stock_list_id')->references('id')->on('stock_lists')->onDelete('cascade');
             $table->timestamps();
         });
     }
