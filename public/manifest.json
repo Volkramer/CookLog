@@ -1,6 +1,6 @@
 {
-  "name": "cooklog",
-  "short_name": "cooklog",
+  "name": "CookLog",
+  "short_name": "CookLog",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
@@ -15,6 +15,10 @@
   ],
   "start_url": "./index.html",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#000000",
-  "theme_color": "#4DBA87"
+  "theme_color": "#c0c0c0",
+  "description": "Une application de gestion de denrées.",
+  "dir": "ltr",
+  "lang": "fr-FR"
 }
