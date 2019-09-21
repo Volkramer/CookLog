@@ -14,15 +14,25 @@ use Illuminate\Http\Request;
 */
 
 /**
- * Unprotected Route
+ * Users group routes
  */
-Route::post('login', 'PassportController@login')->name('login');
-Route::post('register', 'PassportController@register');
+Route::prefix('user')->group(function () {
+    Route::post('login', 'PassportController@login')->name('login');
+    Route::post('register', 'PassportController@register');
+
+    /**
+     * Protected Routes
+     */
+    Route::middleware('auth:api')->group(function () {
+        Route::get('profil', 'PassportController@details');
+        Route::post('logout', 'PassportController@logout');
+    });
+});
 
 /**
- * Group of Route protected by middleware auth
+ * Products group routes
  */
-Route::middleware('auth:api')->group(function () {
-    Route::get('user', 'PassportController@details');
-    Route::post('logout', 'PassportController@logout');
+Route::prefix('product')->group(function () {
+    Route::get('code/{slug}', 'ProductController@getProductByCode');
+    Route::get('search/{slug}', 'ProductController@findProduct');
 });

@@ -15,6 +15,7 @@ class CreateShoppingListContentsTable extends Migration
     {
         Schema::create('shopping_list_contents', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('product_id');
             $table->integer('quantity');
             $table->boolean('check')->default(0);
             $table->bigInteger('shopping_list_id')->unsigned();
