@@ -15,6 +15,7 @@ class CreateStockContentsTable extends Migration
     {
         Schema::create('stock_contents', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('product_id');
             $table->integer('quantity')->unsigned();
             $table->dateTime('dlc_dluo_date')->nullable();
             $table->boolean('dlc_dluo_toggle')->default(0);
