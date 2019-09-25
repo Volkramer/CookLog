@@ -33,6 +33,14 @@ Route::prefix('user')->group(function () {
  * Products group routes
  */
 Route::prefix('product')->group(function () {
-    Route::get('code/{slug}', 'ProductController@getProductByCode');
-    Route::get('search/{slug}', 'ProductController@findProduct');
+    Route::get('code/{slug}/{full?}', 'ProductController@getProductByCode');
+    Route::get('search/{slug}/{full?}', 'ProductController@findProduct');
+});
+
+/**
+ * ShoppingList group routes
+ */
+Route::prefix("ShoppingLists")->group(function () {
+    Route::get('', 'ShoppingListController@index');
+    Route::get('{id}', 'ShoppingListController@show');
 });
