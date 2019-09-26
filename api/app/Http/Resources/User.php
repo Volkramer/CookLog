@@ -24,7 +24,7 @@ class User extends JsonResource
             'description' => $this->user_description,
             'privateMode' => $this->toggle_private,
             'role' => $this->role->role,
-            'skillLevel' => $this->skillLevel,
+            'skillLevel' => $this->skillLevel->level,
             'creationDate' => $this->created_at,
             'lastModified' => $this->updated_at,
         ];
