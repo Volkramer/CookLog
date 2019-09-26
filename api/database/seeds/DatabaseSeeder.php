@@ -12,25 +12,25 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('roles')->insert([
-            'role'=>'normal'
+            'role' => 'basic'
         ]);
         DB::table('roles')->insert([
-            'role'=>'moderator'
+            'role' => 'moderator'
         ]);
         DB::table('roles')->insert([
-            'role'=>'administrator'
+            'role' => 'administrator'
         ]);
         DB::table('skill_levels')->insert([
-            'level'=>'beginner'
+            'level' => 'beginner'
         ]);
         DB::table('skill_levels')->insert([
-            'level'=>'intermediate'
+            'level' => 'intermediate'
         ]);
         DB::table('skill_levels')->insert([
-            'level'=>'advanced'
+            'level' => 'advanced'
         ]);
         DB::table('skill_levels')->insert([
-            'level'=>'pro'
+            'level' => 'pro'
         ]);
     }
 }

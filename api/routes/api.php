@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
  * Users group routes
  */
 Route::prefix('user')->group(function () {
-    Route::post('login', 'PassportController@login')->name('login');
+    Route::post('login', 'PassportController@login');
     Route::post('register', 'PassportController@register');
 
     /**

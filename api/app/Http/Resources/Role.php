@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Product extends JsonResource
+class Role extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,9 +14,6 @@ class Product extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'code' => $this["code"],
-            'product_name' => $this["product_name"],
-        ];
+        return parent::toArray($request);
     }
 }

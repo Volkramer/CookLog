@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\ProductCollection;
+use App\Http\Resources\Product as ProductResource;
 
 class ProductController extends Controller
 {
@@ -12,8 +13,8 @@ class ProductController extends Controller
     {
         if ($full === "full") {
             return DB::connection('mongodb')->collection('products')->where('code', $slug)->first();
-        } elseif ($full === null) {
-            return new ProductCollection(DB::connection('mongodb')->collection('products')->where('code', $slug)->first());
+        } else {
+            return new ProductResource(DB::connection('mongodb')->collection('products')->where('code', $slug)->first());
         }
     }
 
@@ -21,15 +22,13 @@ class ProductController extends Controller
     {
         if ($full === "full") {
             return DB::connection('mongodb')->collection('products')
-                ->where('code', $slug)
-                ->orwhere('product_name', $slug)
+                ->where('product_name', 'regexp', '/.*' . $slug . '/i')
                 ->limit(10)
                 ->get();
-        } elseif ($full === null) {
+        } else {
             return new ProductCollection(
                 DB::connection('mongodb')->collection('products')
-                    ->where('code', $slug)
-                    ->orwhere('product_name', $slug)
+                    ->where('product_name', 'regexp', '/.*' . $slug . '/i')
                     ->limit(10)
                     ->get()
             );
