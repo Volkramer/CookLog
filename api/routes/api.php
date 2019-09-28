@@ -40,7 +40,16 @@ Route::prefix('product')->group(function () {
 /**
  * ShoppingList group routes
  */
-Route::prefix("ShoppingLists")->group(function () {
-    Route::get('', 'ShoppingListController@index');
-    Route::get('{id}', 'ShoppingListController@show');
+Route::prefix("shoppinglist")->group(function () {
+
+    /**
+     * Protected Routes
+     */
+    Route::middleware('auth:api')->group(function () {
+        Route::get('', 'ShoppingListController@index');
+        Route::post('', 'ShoppingListController@store');
+        Route::get('{id}', 'ShoppingListController@show');
+        Route::put('{id}', 'ShoppingListController@update');
+        Route::delete('{id}', 'ShoppingListController@destroy');
+    });
 });
