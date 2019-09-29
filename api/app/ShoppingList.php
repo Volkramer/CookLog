@@ -15,8 +15,8 @@ class ShoppingList extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function shoppingListContents()
+    public function shoppingListItems()
     {
-        return $this->hasMany('App\ShoppingListContent');
+        return $this->hasMany('App\ShoppingListItem');
     }
 }

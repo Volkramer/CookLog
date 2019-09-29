@@ -53,3 +53,19 @@ Route::prefix("shoppinglist")->group(function () {
         Route::delete('{id}', 'ShoppingListController@destroy');
     });
 });
+
+/**
+ * ShoppingListItem group routes
+ */
+Route::prefix("shoppinglistitem")->group(function () {
+    /**
+     * Protected Routes
+     */
+    Route::middleware('auth:api')->group(function () {
+        Route::get('', 'ShoppingListItemController@index');
+        Route::post('', 'ShoppingListItemController@store');
+        Route::get('{id}', 'ShoppingListItemController@show');
+        Route::put('{id}', 'ShoppingListItemController@update');
+        Route::delete('{id}', 'ShoppingListItemController@destroy');
+    });
+});

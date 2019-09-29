@@ -11,8 +11,8 @@ class StockList extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function stockContents()
+    public function stockItems()
     {
-        return $this->hasMany('App\StockContent');
+        return $this->hasMany('App\StockItem');
     }
 }
