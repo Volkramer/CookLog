@@ -69,3 +69,36 @@ Route::prefix("shoppinglistitem")->group(function () {
         Route::delete('{id}', 'ShoppingListItemController@destroy');
     });
 });
+
+/**
+ * ShoppingList group routes
+ */
+Route::prefix("stocklist")->group(function () {
+
+    /**
+     * Protected Routes
+     */
+    Route::middleware('auth:api')->group(function () {
+        Route::get('', 'StockListController@index');
+        Route::post('', 'StockListController@store');
+        Route::get('{id}', 'StockListController@show');
+        Route::put('{id}', 'StockListController@update');
+        Route::delete('{id}', 'StockListController@destroy');
+    });
+});
+
+/**
+ * ShoppingListItem group routes
+ */
+Route::prefix("stocklistitem")->group(function () {
+    /**
+     * Protected Routes
+     */
+    Route::middleware('auth:api')->group(function () {
+        Route::get('', 'StockListItemController@index');
+        Route::post('', 'StockListItemController@store');
+        Route::get('{id}', 'StockListItemController@show');
+        Route::put('{id}', 'StockListItemController@update');
+        Route::delete('{id}', 'StockListItemController@destroy');
+    });
+});
