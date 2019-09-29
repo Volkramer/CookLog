@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ShoppingListContent extends Model
+class ShoppingListItem extends Model
 {
     public function products()
     {
-        return $this->belongsToMany('App\Product');
+        return $this->hasOne('App\Product');
     }
 
     public function shoppingList()

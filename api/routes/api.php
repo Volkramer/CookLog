@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
  * Users group routes
  */
 Route::prefix('user')->group(function () {
-    Route::post('login', 'PassportController@login')->name('login');
+    Route::post('login', 'PassportController@login');
     Route::post('register', 'PassportController@register');
 
     /**
@@ -33,6 +33,39 @@ Route::prefix('user')->group(function () {
  * Products group routes
  */
 Route::prefix('product')->group(function () {
-    Route::get('code/{slug}', 'ProductController@getProductByCode');
-    Route::get('search/{slug}', 'ProductController@findProduct');
+    Route::get('code/{slug}/{full?}', 'ProductController@getProductByCode');
+    Route::get('search/{slug}/{full?}', 'ProductController@findProduct');
+});
+
+/**
+ * ShoppingList group routes
+ */
+Route::prefix("shoppinglist")->group(function () {
+
+    /**
+     * Protected Routes
+     */
+    Route::middleware('auth:api')->group(function () {
+        Route::get('', 'ShoppingListController@index');
+        Route::post('', 'ShoppingListController@store');
+        Route::get('{id}', 'ShoppingListController@show');
+        Route::put('{id}', 'ShoppingListController@update');
+        Route::delete('{id}', 'ShoppingListController@destroy');
+    });
+});
+
+/**
+ * ShoppingListItem group routes
+ */
+Route::prefix("shoppinglistitem")->group(function () {
+    /**
+     * Protected Routes
+     */
+    Route::middleware('auth:api')->group(function () {
+        Route::get('', 'ShoppingListItemController@index');
+        Route::post('', 'ShoppingListItemController@store');
+        Route::get('{id}', 'ShoppingListItemController@show');
+        Route::put('{id}', 'ShoppingListItemController@update');
+        Route::delete('{id}', 'ShoppingListItemController@destroy');
+    });
 });

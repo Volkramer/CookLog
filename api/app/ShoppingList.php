@@ -6,13 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class ShoppingList extends Model
 {
+    protected $fillable = [
+        'name'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function shoppingListContents()
+    public function shoppingListItems()
     {
-        return $this->hasMany('App\ShoppingListContent');
+        return $this->hasMany('App\ShoppingListItem');
     }
 }

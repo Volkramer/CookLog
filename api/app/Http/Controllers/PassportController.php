@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Passport\Client;
 use GuzzleHttp\Client as HttpClient;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\User as UserResource;
 
 class PassportController extends Controller
 {
@@ -51,7 +52,7 @@ class PassportController extends Controller
     {
         $this->validate($request, [
             'username' => 'required|min:3',
-            'password'=> 'required|min:6',
+            'password' => 'required|min:6',
         ]);
 
         $http = new HttpClient();
@@ -68,17 +69,19 @@ class PassportController extends Controller
         ]);
 
         return $response;
-
     }
 
-    public function logout(Request $request){
+    public function logout()
+    {
         $accessToken = Auth::user()->token();
 
         $accessToken->revoke();
+
+        return 200;
     }
 
     public function details()
     {
-        return response()->json(['user' => auth()->user()], 200);
+        return new UserResource(auth()->user());
     }
 }
