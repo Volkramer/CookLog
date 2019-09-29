@@ -27,3 +27,13 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# Cooklog API
+
+## API Setup
+```
+cd api
+composer install
+php artisan key:generate
+php artisan migrate:fresh --seed
+php artisan passport:client --password
