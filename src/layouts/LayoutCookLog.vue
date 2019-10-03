@@ -13,14 +13,14 @@
 
           <v-list-item-content>
             <v-list-item-title>Filippo Etchebesti</v-list-item-title>
-            <v-list-item-subtitle>Logged In</v-list-item-subtitle>
+            <v-list-item-subtitle>Chef</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </template>
 
       <v-divider></v-divider>
       <v-list>
-        <v-list-item @click="this.$router.push({ name: 'stock'})">
+        <v-list-item @click="this.$router.push({ name: 'home'})">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -31,8 +31,8 @@
         <v-list-item @click="this.$router.push({ name: 'stock'})">
           <v-list-item-action>
             <!-- 
-              les icones se trouvent ici, penser à vérifier que les - remplacent les _
-              https://material.io/resources/icons/?style=baseline 
+              les icones se trouvent ici:
+              https://materialdesignicons.com/ 
               -->
             <v-icon>mdi-folder</v-icon>
           </v-list-item-action>
@@ -56,6 +56,14 @@
             <v-list-item-title>Listes de Courses</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item @click="router.push({ name: 'about'})">
+          <v-list-item-action>
+            <v-icon>mdi-information-variant</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>A propos</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
@@ -67,14 +75,18 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>CookLog</v-toolbar-title>
       <div class="flex-grow-1"></div>
-
+      <v-btn icon>
+        <v-icon>mdi-bell</v-icon>
+      </v-btn>
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-content>
-      
+      <v-container fluid>
+        <router-view/>
+      </v-container>
     </v-content>
     <v-footer
       app
