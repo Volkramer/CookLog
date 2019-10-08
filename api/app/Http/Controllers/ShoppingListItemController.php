@@ -50,7 +50,7 @@ class ShoppingListItemController extends Controller
         $shoppingListItem->product_id = $request->productId;
         $shoppingListItem->quantity = $request->quantity;
         $shoppingListItem->check = $request->check;
-        $shoppingListItem->shopping_list_id = $request->shoppingList;
+        $shoppingListItem->shopping_list_id = $request->shoppingListId;
         $shoppingListItem->save();
 
         return new ShoppingListItemResource($shoppingListItem);
