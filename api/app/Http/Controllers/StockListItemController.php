@@ -18,7 +18,7 @@ class StockListItemController extends Controller
         $stockListItem->product_id = $request->productId;
         $stockListItem->quantity = $request->quantity;
         $stockListItem->dlc_dluo_date = $request->dlc;
-        $stockListItem->stock_list_id = $request->stockList;
+        $stockListItem->stock_list_id = $request->stockListId;
         $stockListItem->save();
 
         return new StockListItemResource($stockListItem);
@@ -49,7 +49,7 @@ class StockListItemController extends Controller
         $stockListItem->quantity = $request->quantity;
         $stockListItem->dlc_dluo_date = $request->dlc;
         $stockListItem->dlc_dluo_toggle = $request->dluoToggle;
-        $stockListItem->stock_list_id = $request->stockList;
+        $stockListItem->stock_list_id = $request->stockListId;
         $stockListItem->save();
 
         return new StockListItemResource($stockListItem);

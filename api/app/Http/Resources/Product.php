@@ -17,6 +17,7 @@ class Product extends JsonResource
         return [
             'code' => $this["code"],
             'product_name' => $this["product_name"],
+            'url_image' => $this["sources"]["url"],
         ];
     }
 }
