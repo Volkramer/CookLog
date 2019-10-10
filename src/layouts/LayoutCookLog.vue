@@ -28,7 +28,7 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="this.$router.push({ name: 'stock'})">
+        <v-list-item @click="this.$router.push({ path: '/stock'})">
           <v-list-item-action>
             <!-- 
               les icones se trouvent ici:
@@ -76,7 +76,7 @@
       <v-toolbar-title>CookLog</v-toolbar-title>
       <div class="flex-grow-1"></div>
       <v-btn icon>
-        <v-icon>mdi-bell</v-icon>
+        <v-icon color="red">mdi-bell</v-icon>
       </v-btn>
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
@@ -85,7 +85,7 @@
 
     <v-content>
       <v-container fluid>
-        <router-view/>
+        <router-view></router-view>
       </v-container>
     </v-content>
     <v-footer
