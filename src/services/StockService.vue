@@ -15,7 +15,7 @@ export default {
   getStockLists() {
     return apiClient.get('/stocklist/')
   },
-  getStockLists(id) {
+  getStockList(id) {
     return apiClient.get('/stocklist/' + id)
   }
 }
