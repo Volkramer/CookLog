@@ -20,7 +20,8 @@
 
       <v-divider></v-divider>
       <v-list>
-        <v-list-item @click="this.$router.push({ name: 'home'})">
+        
+        <v-list-item @click="$router.push({ name: 'home'})">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -28,7 +29,8 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="this.$router.push({ path: '/stock'})">
+      
+        <v-list-item @click="$router.push({ name: 'stock'})">
           <v-list-item-action>
             <!-- 
               les icones se trouvent ici:
@@ -40,15 +42,15 @@
             <v-list-item-title>Inventaire</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="router.push({ name: 'recettes'})">
+        <!-- <v-list-item @click="router.push({ name: 'recettes'})">
           <v-list-item-action>
             <v-icon>mdi-format-list-bulleted</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Recettes</v-list-item-title>
           </v-list-item-content>
-        </v-list-item>
-        <v-list-item @click="router.push({ name: 'shopping-list'})">
+        </v-list-item> -->
+        <v-list-item @click="$router.push({ name: 'shoppinglist'})">
           <v-list-item-action>
             <v-icon>mdi-cart-arrow-down</v-icon>
           </v-list-item-action>
@@ -56,7 +58,7 @@
             <v-list-item-title>Listes de Courses</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="router.push({ name: 'about'})">
+        <v-list-item @click="$router.push({ name: 'about'})">
           <v-list-item-action>
             <v-icon>mdi-information-variant</v-icon>
           </v-list-item-action>

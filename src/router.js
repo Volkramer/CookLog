@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomePage from './views/HomePage.vue'
+import HomePage from '@/views/HomePage.vue'
 import ListStockListsPage from "@/views/ListStockListsPage";
 import StockListPage from "@/views/StockListPage";
+import SignUpPage from "@/views/SignUpPage.vue";
+import ShoppingListPage from "@/views/ShoppingListPage";
 
 Vue.use(Router)
 
@@ -30,8 +32,18 @@ export default new Router({
     },
     {
       path: '/stocks',
-      name: 'stock-lists',
+      name: 'stocklists',
       component: ListStockListsPage
-    }
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: SignUpPage
+    },
+    {
+      path: '/shoppinglist',
+      name: 'shoppinglist',
+      component: ShoppingListPage
+    },
   ]
 })
