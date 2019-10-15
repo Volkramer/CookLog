@@ -5,6 +5,7 @@ import ListStockListsPage from "@/views/ListStockListsPage";
 import StockListPage from "@/views/StockListPage";
 import SignUpPage from "@/views/SignUpPage.vue";
 import ShoppingListPage from "@/views/ShoppingListPage";
+import SignInPage from "@/views/SignInPage";
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: SignUpPage
+    },
+    {
+      path: '/signin',
+      name: 'signin',
+      component: SignInPage
     },
     {
       path: '/shoppinglist',
