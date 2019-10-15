@@ -30,7 +30,7 @@
           </v-list-item-content>
         </v-list-item>
       
-        <v-list-item @click="$router.push({ name: 'stock'})">
+        <v-list-item @click="$router.push({ name: 'stocklists'})">
           <v-list-item-action>
             <!-- 
               les icones se trouvent ici:

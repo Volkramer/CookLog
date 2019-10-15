@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Liste de stocks</h2>
+    <h2>Liste des stocks</h2>
     <StockListsCard v-for="stockList in stockLists" :key="stockList.id" :stockList="stockList" />
   </div>
 </template>
