@@ -1,27 +1,41 @@
 <template>
-  <div id="login">
-    <h1>Login</h1>
-    <input type="text" name="username" v-model="input.username" placeholder="Username" />
-    <input type="text" name="email" v-model="input.email" placeholder="Email" />
-    <input type="password" name="password" v-model="input.password" placeholder="Password" />
-    <button type="button" v-on:click="login()">Login</button>
+  <div id="signin">
+    <v-card max-width="600px">
+      <v-card-title>
+        <h2 class="title">Connectez vous</h2>
+      </v-card-title>
+      <v-card-text>
+        <v-form class="px-3">
+          <v-text-field label="Email" v-model="email" type="email" required></v-text-field>
+          <v-text-field label="Mot de passe" v-model="password" type="password" required></v-text-field>
+        </v-form>
+        <v-btn v-on:click="register">Validez</v-btn>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'Login',
-    data() {
-      return {
-        input: {
-          username: "",
-          password: ""
-        }
-      }
-    },    
+export default {
+  name: "Signin",
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    login: function() {
+      let email = this.email;
+      let password = this.password;
+      this.$store
+        .dispatch("login", { email, password })
+        .then(() => this.$router.push("/"))
+        .catch(err => console.log(err));
+    }
   }
+};
 </script>
 
 <style scoped>
-
 </style>
