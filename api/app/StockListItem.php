@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StockContent extends Model
+class StockListItem extends Model
 {
     public function products()
     {

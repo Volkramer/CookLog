@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\StockListItem;
 use Illuminate\Http\Request;
+use App\Http\Resources\StockListItem as StockListItemResource;
 
 class StockListItemController extends Controller
 {

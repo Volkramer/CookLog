@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\StockListItem;
+use App\StockList;
+use App\Http\Resources\StockList as StockListResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StockListController extends Controller
 {
@@ -27,6 +30,7 @@ class StockListController extends Controller
     {
         //I am not doing validation here
         $stockList = new StockList();
+        $stockList->name = $request->name;
         $stockList->user_id = Auth()->user()->id;
         $stockList->save();
 
