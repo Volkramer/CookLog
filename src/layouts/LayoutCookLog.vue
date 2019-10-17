@@ -13,8 +13,8 @@
             </v-list-item-subtitle>
           </v-list-item-content>
           <v-list-item-content v-else>
-            <v-list-item-title>{{user.username}}</v-list-item-title>
-            <v-list-item-subtitle></v-list-item-subtitle>
+            <v-list-item-title>{{user.data.username}}</v-list-item-title>
+            <v-list-item-subtitle>{{user.data.skillLevel}}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </template>
@@ -96,6 +96,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   props: {
     source: String
@@ -105,15 +106,17 @@ export default {
     user: {}
   }),
   mounted() {
-    this.user = this.getUser;
+    axios({
+      url: "http://api.cooklog.local/api/user/profil",
+      method: "GET"
+    }).then(resp => {
+      this.user = resp.data;
+    });
   },
   method: {},
   computed: {
     isLoggedIn: function() {
       return this.$store.getters.isLoggedIn;
-    },
-    getUser: function() {
-      return this.$store.getters.userData;
     }
   }
 };
