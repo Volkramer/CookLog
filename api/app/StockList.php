@@ -6,13 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class StockList extends Model
 {
+    protected $fillable = [
+        'name'
+    ];
+
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function stockItems()
+    public function stockListItems()
     {
-        return $this->hasMany('App\StockItem');
+        return $this->hasMany('App\StockListItem');
     }
 }

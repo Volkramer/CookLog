@@ -12,9 +12,8 @@
         <v-list-item-content>
           <v-list-item-title class="headline mb-1 justify-content"> {{stock_lists.name}} </v-list-item-title>
         </v-list-item-content>
-          <v-btn fab small class="green--text">
-            <v-icon>mdi-plus-circle-outline</v-icon>
-          </v-btn>
+          
+          <AddProductToStock />
 
         <v-card-actions>
           <v-btn fab small class="red--text">
@@ -26,7 +25,10 @@
         </v-card-actions>
 
       </v-list-item>
-      <StockListCard/>
+      <StockListCard 
+        v-for='stock in stockList'
+        :key='stock.id'
+        />
 
       
     </v-card>
@@ -34,9 +36,11 @@
 
 <script>
 import StockListCard from "@/components/StockListCard";
+import AddProductToStock from "@/components/AddProductToStock";
     export default {
       components:{
         StockListCard,
+        AddProductToStock,
       },
       props:{
         stockList: Object,
