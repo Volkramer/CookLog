@@ -9,7 +9,7 @@
           <v-text-field label="Email" v-model="email" type="email" required></v-text-field>
           <v-text-field label="Mot de passe" v-model="password" type="password" required></v-text-field>
         </v-form>
-        <v-btn v-on:click="register">Validez</v-btn>
+        <v-btn v-on:click="login">Validez</v-btn>
       </v-card-text>
     </v-card>
   </div>
@@ -26,10 +26,10 @@ export default {
   },
   methods: {
     login: function() {
-      let email = this.email;
+      let username = this.email;
       let password = this.password;
       this.$store
-        .dispatch("login", { email, password })
+        .dispatch("login", { username, password })
         .then(() => this.$router.push("/"))
         .catch(err => console.log(err));
     }

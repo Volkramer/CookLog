@@ -41,19 +41,7 @@ export default new Vuex.Store({
                     .then(resp => {
                         const token = resp.data.access_token
                         localStorage.setItem('token', token)
-                        Axios.defaults.headers.common['Authorization'] = token
-                        Axios({
-                                url: 'http://api.cooklog.local/api/user/profil',
-                                method: 'GET'
-                            })
-                            .then(resp => {
-                                user = resp.data;
-                                resolve(resp);
-                            })
-                            .catch(err => {
-                                commit('auth_error', err)
-                                reject(err)
-                            })
+                        Axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
                         commit('auth_success', token, user)
                         resolve(resp)
                     })
@@ -103,7 +91,7 @@ export default new Vuex.Store({
         logout({
             commit
         }) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 commit('logout')
                 localStorage.removeItem('token')
                 delete Axios.defaults.headers.common['Authorization']
@@ -114,5 +102,6 @@ export default new Vuex.Store({
     getters: {
         isLoggedIn: state => !!state.token,
         authStatus: state => state.status,
+        userData: state => state.user,
     }
 })
