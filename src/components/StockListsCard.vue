@@ -1,30 +1,43 @@
 <template>
-  <router-link class="event-link" :to="{ name: 'stock', params: { id: stockList.id } }">
+  
     <v-card
       max-width="480"
       class="mx-auto"
     >
       
       <v-list-item three-line>
-        
+
         <v-icon size="40">mdi-folder</v-icon>
 
         <v-list-item-content>
-          <v-list-item-title class="headline mb-1">{{stockList.name}}</v-list-item-title>
+          <v-list-item-title class="headline mb-1 justify-content"> {{stock_lists.name}} </v-list-item-title>
         </v-list-item-content>
+          <v-btn fab small class="green--text">
+            <v-icon>mdi-plus-circle-outline</v-icon>
+          </v-btn>
 
         <v-card-actions>
-          <v-icon>mdi-trash-can-outline</v-icon>
-          <v-icon>mdi-file-document-edit</v-icon>
+          <v-btn fab small class="red--text">
+            <v-icon>mdi-trash-can-outline</v-icon>
+          </v-btn>
+          <v-btn fab small class="primary--text">
+            <v-icon>mdi-file-document-edit</v-icon>
+          </v-btn>
         </v-card-actions>
-      </v-list-item>      
+
+      </v-list-item>
+      <StockListCard/>
+
       
     </v-card>
-  </router-link>
 </template>
 
 <script>
+import StockListCard from "@/components/StockListCard";
     export default {
+      components:{
+        StockListCard,
+      },
       props:{
         stockList: Object,
       }
